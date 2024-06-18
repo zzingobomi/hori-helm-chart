@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-frontend-deploy"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hori-frontend
+  template:
+    metadata:
+      labels:
+        app: hori-frontend
+    spec:
+      containers:
+        - name: hori-frontend
+          image: zzingo5/hori-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 32000
