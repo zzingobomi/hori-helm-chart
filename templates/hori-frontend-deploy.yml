@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   name: "{{ .Release.Name }}-frontend-deploy"
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: hori-frontend
+      app: "{{ .Release.Name }}-frontend"
   template:
     metadata:
       labels:
-        app: hori-frontend
+        app: "{{ .Release.Name }}-frontend"
     spec:
       containers:
-        - name: hori-frontend
-          image: zzingo5/hori-frontend:latest
-          imagePullPolicy: Always
+        - name: "{{ .Release.Name }}-frontend"
+          image: "{{ .Values.frontend.repository }}:{{ .Values.frontend.tag }}"
+          imagePullPolicy: "{{ .Values.frontend.pullPolicy }}"
           ports:
-            - containerPort: 32000
+            - containerPort: {{ .Values.frontend.containerPort }}

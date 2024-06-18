@@ -4,9 +4,9 @@ metadata:
   name: "{{ .Release.Name }}-frontend-service"
 spec:
   selector:
-    app: hori-frontend
+    app: "{{ .Release.Name }}-frontend"
   type: ClusterIP
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 32000
+      targetPort: {{ .Values.frontend.containerPort }}

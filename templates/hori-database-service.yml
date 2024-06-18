@@ -4,7 +4,7 @@ metadata:
   name: "{{ .Release.Name }}-database-service"
 spec:
   selector:
-    app: hori-database-sfs
+    app: "{{ .Release.Name }}-database-sfs"
   type: ClusterIP
   clusterIP: None
   ports:

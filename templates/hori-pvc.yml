@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: "{{ .Release.Name }}-pvc-database"
 spec:
-  storageClassName: hori-nfs
+  storageClassName: "{{ .Release.Name }}-nfs"
   accessModes:
     - ReadWriteMany
   resources:

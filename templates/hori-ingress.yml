@@ -1,27 +1,28 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: "{{ .Release.Name }}-frontend-ingress"
+  name: "{{ .Release.Name }}-ingress"
 spec:
   ingressClassName: nginx
   rules:
-    - host: www.zzingobomi.com
+    - host: "{{ .Values.backend.host }}"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: hori-frontend-service
+                name: "{{ .Release.Name }}-backend-service"
                 port:
                   number: 80
-    - host: api.zzingobomi.com
+    - host: "{{ .Values.frontend.host }}"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: hori-backend-service
+                name: "{{ .Release.Name }}-frontend-service"
                 port:
                   number: 80
+    

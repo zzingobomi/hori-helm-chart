@@ -3,18 +3,18 @@ kind: StatefulSet
 metadata:
   name: "{{ .Release.Name }}-database-sfs"
 spec:
-  serviceName: hori-database-sfs
+  serviceName: "{{ .Release.Name }}-database-sfs"
   replicas: 1
   selector:
     matchLabels:
-      app: hori-database-sfs
+      app: "{{ .Release.Name }}-database-sfs"
   template:
     metadata:
       labels:
-        app: hori-database-sfs
+        app: "{{ .Release.Name }}-database-sfs"
     spec:
       containers:
-        - name: hori-database-sfs
+        - name: "{{ .Release.Name }}-database-sfs"
           image: postgres:16
           env:
             - name: POSTGRES_DB
@@ -26,9 +26,9 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - name: hori-pv-database
+            - name: "{{ .Release.Name }}-pv-database"
               mountPath: "/var/lib/postgresql/data/"
       volumes:
-        - name: hori-pv-database
+        - name: "{{ .Release.Name }}-pv-database"
           persistentVolumeClaim:
-            claimName: hori-pvc-database
+            claimName: "{{ .Release.Name }}-pvc-database"

@@ -4,9 +4,9 @@ metadata:
   name: "{{ .Release.Name }}-backend-service"
 spec:
   selector:
-    app: hori-backend
+    app: "{{ .Release.Name }}-backend"
   type: ClusterIP
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 33000
+      targetPort: {{ .Values.backend.containerPort }}

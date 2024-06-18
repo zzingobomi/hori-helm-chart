@@ -6,15 +6,15 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: hori-backend
+      app: "{{ .Release.Name }}-backend"
   template:
     metadata:
       labels:
-        app: hori-backend
+        app: "{{ .Release.Name }}-backend"
     spec:
       containers:
-        - name: hori-backend
-          image: zzingo5/hori-backend:latest
-          imagePullPolicy: Always
+        - name: "{{ .Release.Name }}-backend"
+          image: "{{ .Values.backend.repository }}:{{ .Values.backend.tag }}"
+          imagePullPolicy: "{{ .Values.backend.pullPolicy }}"
           ports:
-            - containerPort: 33000
+            - containerPort: {{ .Values.backend.containerPort }}
