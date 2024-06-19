@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 2
 frontend:  
   image:
     repository: zzingo5/hori-frontend
