@@ -2,8 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "{{ .Release.Name }}-ingress"
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    kubernetes.io/ingress.class: "alb"
 spec:
-  ingressClassName: nginx
+  # ingressClassName: nginx
+  ingressClassName: alb
   rules:
     - host: "{{ .Values.backend.host }}"
       http:
