@@ -5,7 +5,8 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: "ip"
-    kubernetes.io/ingress.class: "alb"    
+    kubernetes.io/ingress.class: "alb"
+    external-dns.alpha.kubernetes.io/hostname: practice-zzingo.net
 spec:
   # ingressClassName: nginx
   ingressClassName: alb
