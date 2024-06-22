@@ -4,7 +4,8 @@ metadata:
   name: "{{ .Release.Name }}-ingress"
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    kubernetes.io/ingress.class: "alb"
+    alb.ingress.kubernetes.io/target-type: "ip"
+    kubernetes.io/ingress.class: "alb"    
 spec:
   # ingressClassName: nginx
   ingressClassName: alb
