@@ -9,7 +9,7 @@ frontend:
 backend:
   image:
     repository: zzingo5/hori-backend
-    tag: 20240618-8
+    tag: 20240622-10
   host: api.zzingobomi.com  
   pullPolicy: IfNotPresent
   containerPort: 33000
