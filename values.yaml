@@ -3,13 +3,13 @@ frontend:
   image:
     repository: zzingo5/hori-frontend
     tag: 20240618-8
-  host: www.zzingobomi.com  
+  host: www.practice-zzingo.net
   pullPolicy: IfNotPresent
   containerPort: 32000
 backend:
   image:
     repository: zzingo5/hori-backend
     tag: 20240622-10
-  host: api.zzingobomi.com  
+  host: api.practice-zzingo.net
   pullPolicy: IfNotPresent
   containerPort: 33000

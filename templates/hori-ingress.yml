@@ -6,21 +6,10 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: "ip"
     kubernetes.io/ingress.class: "alb"
-    external-dns.alpha.kubernetes.io/hostname: "www.practice-zzingo.net, api.practice-zzingo.net"    
-spec:
-  # ingressClassName: nginx
+    external-dns.alpha.kubernetes.io/hostname: "{{ .Values.frontend.host }}, {{ .Values.backend.host }}"    
+spec:  
   ingressClassName: alb
   rules:
-    - host: "{{ .Values.backend.host }}"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: "{{ .Release.Name }}-backend-service"
-                port:
-                  number: 80
     - host: "{{ .Values.frontend.host }}"
       http:
         paths:
@@ -31,4 +20,15 @@ spec:
                 name: "{{ .Release.Name }}-frontend-service"
                 port:
                   number: 80
+    - host: "{{ .Values.backend.host }}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: "{{ .Release.Name }}-backend-service"
+                port:
+                  number: 80
+    
     
