@@ -1,0 +1,15 @@
+replicaCount: 2
+frontend:  
+  image:
+    repository: zzingo5/hori-frontend
+    tag: 20240618-8
+  host: www.zzingobomi.com  
+  pullPolicy: IfNotPresent
+  containerPort: 32000
+backend:
+  image:
+    repository: zzingo5/hori-backend
+    tag: 20240618-8
+  host: api.zzingobomi.com  
+  pullPolicy: IfNotPresent
+  containerPort: 33000
