@@ -17,7 +17,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: "{{ .Release.Name }}-frontend-service"
+                name: "{{ .Release.Name }}-frontend-service-active"
                 port:
                   number: 80
     - host: "{{ .Values.backend.host }}"
@@ -27,7 +27,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: "{{ .Release.Name }}-backend-service"
+                name: "{{ .Release.Name }}-backend-service-active"
                 port:
                   number: 80
     

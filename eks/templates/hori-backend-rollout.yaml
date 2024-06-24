@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: "{{ .Release.Name }}-backend-rollout"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-backend"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-backend"
+    spec:
+      containers:
+        - name: "{{ .Release.Name }}-backend"
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: "{{ .Values.backend.pullPolicy }}"
+          ports:
+            - containerPort: {{ .Values.backend.containerPort }}
+  strategy:
+    blueGreen:
+      activeService: "{{ .Release.Name }}-backend-service-active"
+      previewService: "{{ .Release.Name }}-backend-service-preview"
+      autoPromotionEnabled: true
