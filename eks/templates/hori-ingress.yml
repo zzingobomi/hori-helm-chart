@@ -6,7 +6,8 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: "ip"
     kubernetes.io/ingress.class: "alb"
-    external-dns.alpha.kubernetes.io/hostname: "{{ .Values.frontend.host }}, {{ .Values.backend.host }}"    
+    external-dns.alpha.kubernetes.io/hostname: "{{ .Values.frontend.host }}, {{ .Values.backend.host }}"
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:211125714133:certificate/90e4bdda-cd40-450e-899d-c9fcb7dd3188
 spec:  
   ingressClassName: alb
   rules:
@@ -30,5 +31,3 @@ spec:
                 name: "{{ .Release.Name }}-backend-service-active"
                 port:
                   number: 80
-    
-    
