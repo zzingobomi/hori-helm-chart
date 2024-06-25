@@ -2,7 +2,7 @@ replicaCount: 2
 frontend:  
   image:
     repository: zzingo5/hori-frontend
-    tag: 20240625-16
+    tag: 20240625-18
   host: www.practice-zzingo.net
   pullPolicy: IfNotPresent
   containerPort: 32000
